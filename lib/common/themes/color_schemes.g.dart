@@ -32,7 +32,6 @@ const _lightColorScheme = ColorScheme(
   shadow: Color(0xFF000000),
   surfaceTint: Color(0xFF0033A0),
   outlineVariant: Color(0xFFD7C8C2),
-  scrim: Color(0xFF000000),
 );
 
 const _darkColorScheme = ColorScheme(

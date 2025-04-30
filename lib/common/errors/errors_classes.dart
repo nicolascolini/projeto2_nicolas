@@ -1,6 +1,7 @@
 import 'errors_messagens.dart';
 
-sealed class Failure implements Exception {
+// ignore: prefer_typing_uninitialized_variables
+sealed; class Failure implements Exception {
   final String msg;
   Failure(this.msg);
 
