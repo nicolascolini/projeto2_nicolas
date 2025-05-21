@@ -39,7 +39,7 @@ class HomePageController extends ChangeNotifier {
   
   if (result.isFailure) {
     debugPrint(
-      'Error loading student: $(result.failureValueOrNull)',
+      'Error loading student: ${result.failureValueOrNull}',
     );
 
   } else {

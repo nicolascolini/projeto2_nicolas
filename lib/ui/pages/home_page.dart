@@ -8,7 +8,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late HomePageController viewController;
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
@@ -26,9 +27,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
 
     _scaleAnimation = Tween<double>(
-      begin: 1,0,
-      end: 0,9,
-      ). animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut,));
+      begin: 1,
+      0,
+      end: 0,
+      9,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ));
   }
 
   @override
@@ -43,27 +49,25 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       if (_isEditing) {
         _animationController.forward();
       } else {
-    _animationController.reverse();
+        _animationController.reverse();
       }
-      
     });
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text(
-        'Cartão do Estudante',
-        style: TextStyle(fontWeight: FontWeight.bold),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Cartão do Estudante',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(icons.edit),
+          )
+        ],
       ),
-      actions: [
-        IconButton(
-          icon: const Icon(icons.edit),)
-      ],
-    ),
-  )
-},
-
-
+    );
+  }
 }

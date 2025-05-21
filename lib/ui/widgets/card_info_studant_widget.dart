@@ -32,11 +32,9 @@ class StudantCard extends StatelessWidget {
         ),
       ),
     );
-  };
-}
+  }
 
-// ignore: use_function_type_syntax_for_parameters
-Container _buildCard(BuildContext context, (bool isFront=true)) {
+Container _buildCard(BuildContext context, {bool isFront=true}) {
 
   final theme = Theme.of(context);
   return Container(
@@ -61,7 +59,7 @@ Container _buildCard(BuildContext context, (bool isFront=true)) {
         ),
       ],
     ),
-  child: isFront ? _buildCard(context) : _buildCardBack(context),
+  child: isFront ? _buildCardFront(context) : _buildCardBack(context),
   );
 }
 
@@ -70,5 +68,126 @@ Widget _buildCardFront(BuildContext context) {
   var colorText = Colors.white;
 
 
-  // continuar 
+return Padding(
+  padding: const EdgeInsets.all(24.0),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+      Text(
+        'DADOS DO ESTUDANTE',
+        style: TextStyle(
+          color: colorText,
+          fontSize: 14,
+          letterSpacing: 1.5,
+        ),
+      ),
+      Icon(
+      Icons.school,
+      color: colorText,
+      size: 28,
+      ),
+    ],
+  ),
+  const Spacer(),
+  Text(
+    student.name,
+    style: TextStyle(
+      color: theme.colorScheme.tertiary,
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  const SizedBox(height: 20),
+  _buildInfoRow(Icons.cake, 'Idade: ${student.age}', colorText),
+  const SizedBox(height: 10),
+  _buildInfoRow(Icons.email, student.email, colorText),
+  const Spacer(),
+  Center(child: Text('Vire para verso',
+  style: TextStyle(color: colorText.withOpacity(0.7),
+  fontSize: 14,
+  ),
+  )
+  ),
+
+    ]
+  )
+  ); 
+  
+}
+
+mixin; student {
+}
+
+Widget _buildCardBack(BuildContext context) {
+  var colorText = Colors.white;
+
+  return Padding(
+    padding: const EdgeInsets.all(24.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'INFORMAÇÕES ADICIONAIS',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: colorText,
+            fontSize: 10,
+            letterSpacing: 1,5,
+          ),
+        ),
+        const SizedBox(height: 20),
+        _buildInfoRow(Icons.location_on, 'Endereço', colorText),
+        const SizedBox(height: 0),
+        Padding(
+          padding: const EdgeInsets.only(left: 32.0),
+          child: Text(
+            student.address,
+            style: TextStyle(
+              color: colorText,
+              fontSize: 16,
+            ),
+          ),
+          ),
+      const SizedBox(height: 20),
+      _buildInfoRow(Icons.phone, student.phone, colorText),
+      const Spacer(),
+      Center(
+        child: Text(
+          'Ver frente',
+          style: TextStyle(
+            color: colorText.withOpacity(0,7),
+            fontSize: 14,
+          ),
+        ),
+      ),
+      ],
+    ), 
+    );
+}
+
+Row _buildInfoRow(IconData icon, String text, [Color? colorText]) {
+  return Row(
+    children: [
+      Icon(
+        icon,
+        color: colorText,
+        size: 20,
+      ),
+      const SizedBox(width: 12),
+      Expanded(
+        child: Text(
+          text,
+          style: TextStyle(
+            color: colorText,
+            fontSize: 16,
+          ),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    ],
+  );
+}
 }

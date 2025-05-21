@@ -7,7 +7,7 @@ void main() {
   setupDependencies();
   runApp(MaterialApp(
     title: 'Studant id card',
-    home: const Homepage(),
+    home: const HomePage(),
     debugShowCheckedModeBanner: false,
     theme: myTheme,
   ));
