@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto2_nicolas/common/config/dependencies.dart';
 import 'package:projeto2_nicolas/ui/controller/home_page_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -64,8 +65,23 @@ class _HomePageState extends State<HomePage>
         ),
         actions: [
           IconButton(
-            icon: const Icon(icons.edit),
-          )
+            icon: Icon(_isEditing ? Icons.close : Icons.edit,
+            color: Colors.white),
+            onPressed: _toggleEditMode
+            tooltip: _isEditing ? 'Cancelar' : 'Editar Informações',
+          ),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              viewController.loadSample.execute();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Cartão Exemplo Criado',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ))
+            },
         ],
       ),
     );
